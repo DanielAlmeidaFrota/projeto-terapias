@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Conta - Flávio Ciarallo</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="top-bar" style="justify-content: center;">
+            <a href="/"><img th:src="@{/images/logo.png}" alt="Logo" class="logo-img" style="margin: 0;"></a>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <div class="header-com-voltar">
+            <a href="/" class="botao-voltar">&#8592;</a>
+            <h1 class="page-title" style="margin-bottom: 0;">Nova Conta</h1>
+        </div>
+
+        <div class="auth-container">
+            <h2>Comece sua jornada</h2>
+            
+            <form th:action="@{/registro}" th:object="${usuario}" method="post">
+                
+                <input type="text" th:field="*{nome}" placeholder="Nome Completo" class="auth-input" required>
+                
+                <input type="email" th:field="*{email}" placeholder="E-mail" class="auth-input" required>
+                
+                <input type="password" th:field="*{senha}" placeholder="Crie uma Senha" class="auth-input" required>
+                
+                <input type="password" placeholder="Confirme a Senha" class="auth-input" required>
+                
+                <button type="submit" class="auth-btn">Cadastrar</button>
+            </form>
+            
+            <div class="auth-links">
+                <p>Já possui uma conta? <a href="/login">Fazer Login</a></p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

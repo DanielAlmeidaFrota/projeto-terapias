@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flávio Ciarallo - Terapias</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="logo-container">
+                <img th:src="@{/images/logo.png}" alt="Logo Flávio Ciarallo" class="logo-img">
+            </div>
+            
+            <div class="search-container">
+                <input type="text" placeholder="pesquisar" class="search-input">
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="login-container">
+                <div th:if="${session.usuarioLogado == null}" class="login-text">
+                    <a href="/login">Login</a><br>
+                    <span>ou</span><br>
+                    <a href="/registro">Registre-se</a>
+                </div>
+
+                <div th:if="${session.usuarioLogado != null}" class="login-text">
+                    <span style="font-weight: bold; color: var(--cor-primaria);">Olá, <span th:text="${session.usuarioLogado.nome}">Usuário</span></span><br>
+                    <a href="/logout" style="color: #c0392b;">Sair (Logout)</a>
+                </div>
+                
+                <div class="user-icon">👤</div>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="/" class="nav-link">Início</a>
+            <a href="/terapias" class="nav-link">Terapias</a>
+            <a href="https://www.instagram.com/flavio.ciarallo/" target="_blank" class="nav-link">Instagram</a>
+            <a href="#" class="nav-link">Contato</a>
+            <a href="/consulta-avaliativa" class="nav-link">Consulta Avaliativa</a>
+            <a href="#" class="nav-link">sobre mim</a>
+        </nav>
+    </header>
+
+    <main class="content-area">
+        <h1 class="page-title">PÁGINA INICIAL</h1>
+
+        <div class="cards-grid">
+            
+            <a href="/terapias" class="card-link-wrapper">
+                <div class="card">
+                    <div class="card-image"><span>imagem</span></div>
+                    <div class="card-info">
+                        <h3>Terapias</h3>
+                        <p>texto sobre terapias</p>
+                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/consulta-avaliativa" class="card-link-wrapper">
+                <div class="card">
+                    <div class="card-image"><span>imagem</span></div>
+                    <div class="card-info">
+                        <h3>Consulta Avaliativa</h3>
+                        <p>texto auxiliar</p>
+                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card">
+                    <div class="card-image"><span>imagem</span></div>
+                    <div class="card-info">
+                        <h3>Essências</h3>
+                        <p>texto auxiliar</p>
+                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card">
+                    <div class="card-image"><span>imagem</span></div>
+                    <div class="card-info">
+                        <h3>Contato</h3>
+                        <p>texto auxiliar</p>
+                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+        </div> </main>
+</body>
+</html>

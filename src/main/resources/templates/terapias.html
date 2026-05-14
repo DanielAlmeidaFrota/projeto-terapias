@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Terapias - Flávio Ciarallo</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="logo-container">
+                <img th:src="@{/images/logo.png}" alt="Logo Flávio Ciarallo" class="logo-img">
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="pesquisar" class="search-input">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="login-container">
+                <div class="login-text">
+                    <a href="/login">Login</a><br> <span>ou</span><br>
+                    <a href="/registro">Registre-se</a> </div>
+                <div class="user-icon">👤</div>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="/" class="nav-link">Início</a>
+            <a href="/terapias" class="nav-link">Terapias</a>
+            <a href="https://www.instagram.com/flavio.ciarallo/" target="_blank" class="nav-link">Instagram</a>
+            <a href="#" class="nav-link">Contato</a>
+            <a href="/consulta-avaliativa" class="nav-link">Consulta Avaliativa</a>
+            <a href="#" class="nav-link">sobre mim</a>
+        </nav>
+    </header>
+
+    <main class="content-area">
+        
+        <div class="header-com-voltar">
+            <a href="/" class="botao-voltar">&#8592;</a>
+            <h1 class="page-title" style="margin-bottom: 0;">Nossas Terapias</h1>
+        </div>
+
+        <div class="hero-consulta">
+            <h2>Seu Caminho para o Bem-Estar Começa Aqui</h2>
+            <p>Através da Iridologia e anamnese completa, identificamos as técnicas ideais para o seu momento atual.</p>
+            <a href="/consulta-avaliativa" class="btn-destaque">Agendar Minha Consulta Avaliativa</a>
+        </div>
+
+        <h2 style="text-align: left; margin-bottom: 30px;">Técnicas Disponíveis</h2>
+        
+  <div class="cards-grid">
+            
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🌀</div>
+                        <h3>Auto Hipnose</h3>
+                        <p>Reprogramação mental para superar bloqueios.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🌿</div>
+                        <h3>Ayurveda</h3>
+                        <p>A ciência da vida e longevidade milenar indiana.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🍃</div>
+                        <h3>Naturopatia</h3>
+                        <p>Tratamentos baseados em recursos da natureza.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🧘</div>
+                        <h3>Yogaterapia</h3>
+                        <p>Posturas e respiração para o reequilíbrio.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">💧</div>
+                        <h3>Aromaterapia</h3>
+                        <p>O poder curativo e sutil dos óleos essenciais.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🪴</div>
+                        <h3>Fitoterapia</h3>
+                        <p>Prevenção e tratamento através das plantas medicinais.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🌈</div>
+                        <h3>Cromoterapia</h3>
+                        <p>Harmonização energética através da frequência das cores.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🤲</div>
+                        <h3>Acupressão</h3>
+                        <p>Alívio de tensões através de toques em pontos de energia.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🗣️</div>
+                        <h3>Efeito Vibracional</h3>
+                        <p>O poder da palavra na mudança da sua frequência.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">✨</div>
+                        <h3>Frases Vibracionais</h3>
+                        <p>Afirmações para transformar a sua realidade diária.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🥗</div>
+                        <h3>Alimentação Funcional</h3>
+                        <p>Nutrição com foco terapêutico e de cura do corpo.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">👁️</div>
+                        <h3>Iridologia</h3>
+                        <p>Análise profunda do seu estado geral através da íris.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">⚡</div>
+                        <h3>Cura Prânica</h3>
+                        <p>Limpeza e energização do seu corpo bioplasmático.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">👐</div>
+                        <h3>Reiki</h3>
+                        <p>Canalização de energia vital universal para cura.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">🌸</div>
+                        <h3>Florais</h3>
+                        <p>Gotas de equilíbrio profundo para as suas emoções.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card-link-wrapper">
+                <div class="card card-mini">
+                    <div class="card-info">
+                        <div class="icone-terapia">💊</div>
+                        <h3>Nutracêuticos</h3>
+                        <p>Compostos bioativos para suplementação estratégica.</p>
+                        <span class="link-saiba-mais">Ver detalhes &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+</body>
+</html>
