@@ -4,17 +4,17 @@ WORKDIR /app
 
 COPY . .
 
-# Converte as quebras de linha do Windows para o padrão Linux
+# Alinha quebras de linha Windows -> Linux
 RUN sed -i 's/\r$//' gradlew
-
-# Dá permissão para rodar
 RUN chmod +x ./gradlew
 
-# Constrói o projeto economizando memória
-RUN ./gradlew clean build -x test --no-daemon
+# CONFIGURAÇÃO DE DIETA: Limita o Gradle a usar no máximo 256MB de RAM para não estourar o Render
+ENV GRADLE_OPTS="-Dorg.gradle.jvmargs=-Xmx256m -XX:MaxMetaspaceSize=64m"
 
-# Libera a porta da web
+# Executa o build com os parâmetros de economia de memória ativa
+RUN ./gradlew clean build -x test --no-daemon --stacktrace
+
 EXPOSE 8080
 
-# AJUSTE FINO: Comando direto para o arquivo jar principal gerado pelo build
-ENTRYPOINT ["java", "-jar", "build/libs/demo-0.0.1-SNAPSHOT.jar"]
+# Inicializa o jar principal gerado
+ENTRYPOINT ["sh", "-c", "java -jar build/libs/*SNAPSHOT.jar"]
