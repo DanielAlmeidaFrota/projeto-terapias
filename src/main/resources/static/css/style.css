@@ -62,14 +62,21 @@ h1, h2, h3, .site-title, .page-title {
    CABEÇALHO E LINHAS
    ========================================= */
 .site-header {
-    position: sticky;     /* Faz a barra ficar "colada" no topo */
-    top: 0;               /* Alinha ela exatamente no limite superior da tela */
-    z-index: 1000;        /* Garante que ela vai flutuar POR CIMA de qualquer outro elemento */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     
-    background-color: var(--cor-branca, #ffffff); /* Evita que o fundo fique transparente ao rolar */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);   /* Uma sombra sutil para dar efeito de profundidade ao rolar */
+    /* Substitua a cor branca sólida por esta cor semi-transparente baseada na sua paleta */
+    background-color: rgba(244, 247, 246, 0.8); 
     
-    /* Mantenha as outras regras de padding ou width que você já tinha aqui embaixo */
+    /* O SEGREDO: Desfoca o fundo fluido e os elementos que passam por trás */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Garante o efeito no Safari/iPhone */
+    
+    /* Uma sombra bem mais suave para combinar com a leveza do fundo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); 
+    
+    /* Mantenha o restante das regras que você já tinha aqui dentro (padding, width, etc.) */
 }
 
 /* --- LINHA SUPERIOR (Flexbox distribui os 3 itens) --- */
@@ -127,6 +134,16 @@ h1, h2, h3, .site-title, .page-title {
     text-decoration: underline;
     color: var(--cor-primaria);
     font-weight: bold;
+    
+    /* 👇 Adicionamos o "preparo" do pulo aqui dentro */
+    display: inline-block; 
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+}
+
+/* 👇 E criamos a ação de passar o mouse logo em seguida */
+.login-text a:hover {
+    transform: translateY(-4px); 
+    color: #00332a; /* Deixei a cor um pouquinho mais escura para dar um charme extra no pulo! */
 }
 
 .user-icon {
@@ -542,4 +559,32 @@ h1, h2, h3, .site-title, .page-title {
 .card-btn:hover {
     background-color: #00332a; /* Uma versão mais escura da sua cor primária */
     color: var(--cor-branca);
+}
+/* =========================================
+   BOTÃO DE VOLTAR
+   ========================================= */
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cor-primaria);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 30px; /* Formato de pílula */
+    background-color: rgba(255, 255, 255, 0.7); /* Fundo branco levemente transparente */
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px); /* Efeito de vidro também no botão */
+}
+
+/* Efeito ao passar o mouse */
+/* Efeito ao passar o mouse (Corrigido para dar destaque) */
+.btn-voltar:hover {
+    background-color: var(--cor-primaria); /* Agora o fundo fica escuro */
+    color: var(--cor-branca, #ffffff);     /* O texto e a setinha ficam brancos */
+    transform: translateX(-5px); 
+    box-shadow: 0 6px 15px rgba(0, 77, 64, 0.2); /* Uma sombra leve com o seu verde/azul escuro */
+    border-color: var(--cor-primaria);
 }
