@@ -1,23 +1,20 @@
-# Usa o Java 21 (ou 17 se você não tiver mudado)
 FROM eclipse-temurin:21-jdk-alpine
 
-# Cria a pasta de trabalho
 WORKDIR /app
 
-# Copia seus arquivos
 COPY . .
 
-# REMÉDIO 1: Converte as quebras de linha do Windows para o padrão Linux
+# Converte as quebras de linha do Windows para o padrão Linux
 RUN sed -i 's/\r$//' gradlew
 
 # Dá permissão para rodar
 RUN chmod +x ./gradlew
 
-# REMÉDIO 2: Adiciona o "--no-daemon" para gastar menos memória do servidor gratuito
+# Constrói o projeto economizando memória
 RUN ./gradlew clean build -x test --no-daemon
 
 # Libera a porta da web
 EXPOSE 8080
 
-# Comando para ligar o site
-ENTRYPOINT ["sh", "-c", "java -jar build/libs/*SNAPSHOT.jar"]
+# AJUSTE FINO: Comando direto para o arquivo jar principal gerado pelo build
+ENTRYPOINT ["java", "-jar", "build/libs/demo-0.0.1-SNAPSHOT.jar"]
