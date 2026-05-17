@@ -1,5 +1,5 @@
-# Usa uma versão oficial e leve do Java 17
-FROM eclipse-temurin:17-jdk-alpine
+
+FROM eclipse-temurin:21-jdk-alpine
 
 # Cria uma pasta chamada /app dentro do servidor
 WORKDIR /app
