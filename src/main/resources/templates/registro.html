@@ -21,15 +21,28 @@
         <div class="auth-container">
             <h2>Comece sua jornada</h2>
             
-            <form th:action="@{/registro}" th:object="${usuario}" method="post">
+            <form th:action="@{/registro}" method="post">
+                <input type="text" name="nome" placeholder="Seu Nome Completo" class="auth-input" required>
+                <input type="email" name="email" placeholder="Seu E-mail" class="auth-input" required>
                 
-                <input type="text" th:field="*{nome}" placeholder="Nome Completo" class="auth-input" required>
+                <input type="password" name="senha" id="senha" placeholder="Sua Senha" class="auth-input" 
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                       title="Sua senha deve ter no mínimo 8 caracteres, contendo pelo menos uma letra maiúscula, uma letra minúscula e um número." 
+                       required>
                 
-                <input type="email" th:field="*{email}" placeholder="E-mail" class="auth-input" required>
-                
-                <input type="password" th:field="*{senha}" placeholder="Crie uma Senha" class="auth-input" required>
-                
-                <input type="password" placeholder="Confirme a Senha" class="auth-input" required>
+                <div id="requisitos-senha" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; margin-top: -10px; margin-bottom: 15px; justify-content: center;">
+                    <span id="req-tamanho" style="background-color: #e0e0e0; color: #7f8c8d; padding: 4px 8px; border-radius: 6px; transition: 0.3s;">8+ Caracteres</span>
+                    <span id="req-maiuscula" style="background-color: #e0e0e0; color: #7f8c8d; padding: 4px 8px; border-radius: 6px; transition: 0.3s;">Maiúscula</span>
+                    <span id="req-minuscula" style="background-color: #e0e0e0; color: #7f8c8d; padding: 4px 8px; border-radius: 6px; transition: 0.3s;">Minúscula</span>
+                    <span id="req-numero" style="background-color: #e0e0e0; color: #7f8c8d; padding: 4px 8px; border-radius: 6px; transition: 0.3s;">Número</span>
+                </div>
+
+                <div style="text-align: left; margin-bottom: 20px; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                    <input type="checkbox" id="termos" name="termos" required style="cursor: pointer; width: 16px; height: 16px;">
+                    <label for="termos" style="cursor: pointer; color: var(--cor-texto);">
+                        Li e concordo com os <a href="#" style="color: var(--cor-primaria); font-weight: bold;">Termos de Uso</a>.
+                    </label>
+                </div>
                 
                 <button type="submit" class="auth-btn">Cadastrar</button>
             </form>
@@ -39,5 +52,44 @@
             </div>
         </div>
     </main>
+    <script>
+        const senhaInput = document.getElementById('senha');
+        
+        // Pegando cada caixinha individualmente
+        const reqTamanho = document.getElementById('req-tamanho');
+        const reqMaiuscula = document.getElementById('req-maiuscula');
+        const reqMinuscula = document.getElementById('req-minuscula');
+        const reqNumero = document.getElementById('req-numero');
+
+        // Função para pintar a caixinha de verde ou voltar para cinza
+        function atualizarCaixinha(elemento, condicao) {
+            if (condicao) {
+                elemento.style.backgroundColor = 'var(--cor-primaria, #004d40)'; // Fica verde
+                elemento.style.color = '#ffffff'; // Texto branco
+                elemento.style.fontWeight = 'bold';
+            } else {
+                elemento.style.backgroundColor = '#e0e0e0'; // Volta pro cinza
+                elemento.style.color = '#7f8c8d'; // Texto cinza escuro
+                elemento.style.fontWeight = 'normal';
+            }
+        }
+
+        // O evento que roda a cada tecla digitada
+        senhaInput.addEventListener('input', function() {
+            const senha = senhaInput.value;
+
+            // 1. Testa se tem 8 ou mais caracteres
+            atualizarCaixinha(reqTamanho, senha.length >= 8);
+
+            // 2. Testa se tem pelo menos uma letra maiúscula (A-Z)
+            atualizarCaixinha(reqMaiuscula, /[A-Z]/.test(senha));
+
+            // 3. Testa se tem pelo menos uma letra minúscula (a-z)
+            atualizarCaixinha(reqMinuscula, /[a-z]/.test(senha));
+
+            // 4. Testa se tem pelo menos um número (0-9)
+            atualizarCaixinha(reqNumero, /[0-9]/.test(senha));
+        });
+    </script>
 </body>
 </html>

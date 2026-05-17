@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* =========================================
    VARIÁVEIS DE CORES (Baseado no seu desenho)
@@ -9,10 +10,40 @@
     --cor-branca: #ffffff;
 
     /* Novas variáveis de fonte */
-    --fonte-titulo: 'Playfair Display', serif;
+    --fonte-titulo: 'Poppins', serif;
     --fonte-texto: 'Poppins', sans-serif;
 }
+/* Animação de Fade-in para a página inteira */
+@keyframes entradaSuave {
+    0% {
+        opacity: 0;
+        transform: translateY(15px); /* Começa um pouquinho mais para baixo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Sobe para a posição normal */
+    }
+}
 
+/* Aplica a animação no corpo de todas as páginas */
+body {
+    /* O fade in que acabamos de criar */
+    animation: entradaSuave 0.6s ease-out forwards; 
+    
+    /* Cria um fundo com várias cores suaves da sua paleta */
+    background: linear-gradient(-45deg, #f4f7f6, #e0f2f1, #ffffff, #d5ebe9);
+    background-size: 400% 400%;
+    
+    /* Faz o fundo se mover infinitamente a cada 15 segundos */
+    animation: entradaSuave 0.6s ease-out forwards, moverFundo 15s ease infinite;
+}
+
+/* A regra que faz o fundo se mexer */
+@keyframes moverFundo {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 /* =========================================
    ESTILO GERAL
    ========================================= */
@@ -31,7 +62,14 @@ h1, h2, h3, .site-title, .page-title {
    CABEÇALHO E LINHAS
    ========================================= */
 .site-header {
-    background-color: var(--cor-fundo);
+    position: sticky;     /* Faz a barra ficar "colada" no topo */
+    top: 0;               /* Alinha ela exatamente no limite superior da tela */
+    z-index: 1000;        /* Garante que ela vai flutuar POR CIMA de qualquer outro elemento */
+    
+    background-color: var(--cor-branca, #ffffff); /* Evita que o fundo fique transparente ao rolar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);   /* Uma sombra sutil para dar efeito de profundidade ao rolar */
+    
+    /* Mantenha as outras regras de padding ou width que você já tinha aqui embaixo */
 }
 
 /* --- LINHA SUPERIOR (Flexbox distribui os 3 itens) --- */
@@ -383,4 +421,125 @@ h1, h2, h3, .site-title, .page-title {
 .auth-links a {
     color: var(--cor-primaria);
     font-weight: bold;
+}
+
+/* =========================================
+   EFEITO NA ÁREA DE LOGIN (Barra Superior)
+   ========================================= */
+.login-container {
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+/* Quando passa o mouse no login, ele ganha um fundo suave e "pula" */
+.login-container:hover {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+
+/* =========================================
+   NOVOS CARDS ESTILO APLICATIVO
+   ========================================= */
+.cards-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap; /* Para se adaptar em telas menores */
+}
+
+.card-servico {
+    background-color: var(--cor-branca);
+    border-radius: 20px; /* Bordas bem redondinhas */
+    padding: 40px 20px;
+    width: calc(25% - 20px);
+    text-align: center;
+    border: 1px solid #e0e0e0; /* Bordinha cinza bem clara */
+    
+    /* Prepara para empurrar o botão para baixo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* Transição suave para o hover */
+    transition: all 0.4s ease;
+}
+
+/* Efeito quando passa o mouse no card */
+/* Efeito quando passa o mouse no card (Borda Desfocada / Glow) */
+.card-servico:hover {
+    transform: translateY(-10px); /* Mantém o cartão levantando um pouquinho */
+    
+    /* Deixa a linha dura invisível */
+    border-color: transparent; 
+    
+    /* O Segredo: Uma sombra centralizada (0 0) com um desfoque grande (25px) */
+    /* Usei um tom de verde/azul translúcido, você pode ajustar a intensidade no último número (0.4) */
+    box-shadow: 0 0 25px rgba(0, 77, 64, 0.4); 
+}
+
+/* Container da Imagem + Bolha */
+.card-img-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 25px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* A bolha de fundo (Aquele círculo clarinho atrás da imagem) */
+.card-blob-bg {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    background-color: var(--cor-secundaria); /* Usa o verdinho/azul clarinho da sua paleta */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* A Imagem de fato (Fica por cima da bolha) */
+.card-img {
+    position: relative;
+    z-index: 2;
+    width: 80px; /* Tamanho da imagem. Se sua imagem for muito grande, ajuste aqui */
+    height: 80px;
+    object-fit: contain;
+}
+
+.card-titulo {
+    color: var(--cor-primaria);
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.card-texto {
+    color: #7f8c8d;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1; /* Faz o texto esticar para empurrar o botão sempre pro final */
+}
+
+/* O Botão azulzinho oval igual da imagem referência */
+.card-btn {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    padding: 12px 30px;
+    border-radius: 30px; /* Deixa o botão em formato de pílula */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    width: 80%; /* Não ocupa 100% do espaço, fica elegante */
+}
+
+.card-btn:hover {
+    background-color: #00332a; /* Uma versão mais escura da sua cor primária */
+    color: var(--cor-branca);
 }

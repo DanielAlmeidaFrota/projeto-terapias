@@ -4,22 +4,38 @@
     <meta charset="UTF-8">
     <title>Consulta Avaliativa - Flávio Ciarallo</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        /* Oculta o formulário até o usuário clicar em começar */
+        #formulario-box {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-
-    <header class="site-header">
+    
+        <header class="site-header">
         <div class="top-bar">
             <div class="logo-container">
-                <img th:src="@{/images/logo.png}" alt="Logo" class="logo-img">
+                <img th:src="@{/images/logo.png}" alt="Logo Flávio Ciarallo" class="logo-img">
             </div>
+            
             <div class="search-container">
                 <input type="text" placeholder="pesquisar" class="search-input">
                 <span class="search-icon">🔍</span>
             </div>
+            
             <div class="login-container">
-                <div class="login-text">
-                    <a href="/login">Login</a><br> <span>ou</span><br>
-                    <a href="/registro">Registre-se</a> </div>
+                <div th:if="${session.usuarioLogado == null}" class="login-text">
+                    <a href="/login">Login</a><br>
+                    <span>ou</span><br>
+                    <a href="/registro">Registre-se</a>
+                </div>
+
+                <div th:if="${session.usuarioLogado != null}" class="login-text">
+                    <span style="font-weight: bold; color: var(--cor-primaria);">Olá, <span th:text="${session.usuarioLogado.nome}">Usuário</span></span><br>
+                    <a href="/logout" style="color: #c0392b;">Sair (Logout)</a>
+                </div>
+                
                 <div class="user-icon">👤</div>
             </div>
         </div>
@@ -35,16 +51,51 @@
     </header>
 
     <main class="content-area">
-        <div class="header-com-voltar">
-            <a href="/" class="botao-voltar">&#8592;</a>
-            <h1 class="page-title" style="margin-bottom: 0;">Consulta Avaliativa</h1>
+        
+        <div id="intro-box" class="auth-container" style="max-width: 600px; margin: 40px auto; text-align: center;">
+            <h1 style="color: var(--cor-primaria); font-size: 24px; margin-bottom: 15px;">Sua Jornada de Cura Começa Aqui</h1>
+            <p style="color: var(--cor-texto); line-height: 1.6; margin-bottom: 20px;">Para montarmos o seu <strong>Cronograma de Tratamento Personalizado</strong>, precisamos entender profundamente o seu momento atual. Nossa avaliação é dividida em 3 passos:</p>
+            
+            <ul style="text-align: left; margin: 0 auto 25px auto; padding-left: 20px; color: var(--cor-texto); line-height: 1.6; max-width: 450px;">
+                <li style="margin-bottom: 10px;"><strong>Perfil Biopsicossocial:</strong> Energia, sono e emoções.</li>
+                <li style="margin-bottom: 10px;"><strong>Mapa de Sintomas:</strong> Identificação rápida de dores.</li>
+                <li style="margin-bottom: 10px;"><strong>A Janela da Alma:</strong> Foto da sua íris.</li>
+            </ul>
+
+            <p style="font-size: 13px; color: #7f8c8d; margin-bottom: 25px;">Reserve cerca de 5 minutinhos, respire fundo e seja o mais sincero possível.</p>
+            
+            <button id="btn-comecar" class="auth-btn">Estou Pronto! Começar</button>
         </div>
 
-        <div style="text-align: left; background: white; padding: 30px; border-radius: 20px; border: 2px solid var(--cor-primaria);">
-            <h3>Agende sua avaliação</h3>
-            <p>Aqui você pode descrever como funciona o seu processo de avaliação inicial...</p>
+        <div id="formulario-box" class="auth-container" style="max-width: 800px; margin: 40px auto;">
+            <h2 style="color: var(--cor-primaria); border-bottom: 2px solid var(--cor-secundaria); padding-bottom: 10px; margin-bottom: 25px; text-align: center;">1. Perfil Biopsicossocial</h2>
+            
+            <form th:action="@{/salvar-consulta}" method="post" enctype="multipart/form-data">
+                
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--cor-texto);">Como você avalia seu nível de energia no dia a dia?</label>
+                    <select name="energia" class="auth-input" required style="cursor: pointer;">
+                        <option value="" disabled selected>Escolha uma opção...</option>
+                        <option value="alto">Alto (Acordo com muita disposição)</option>
+                        <option value="medio">Médio (Vou me cansando ao longo do dia)</option>
+                        <option value="baixo">Baixo (Já acordo me sentindo cansado)</option>
+                    </select>
+                </div>
+
+                <p style="text-align: center; color: #7f8c8d; margin: 40px 0;">(Aqui entrarão as outras perguntas e o anexo da foto...)</p>
+
+                <button type="submit" class="auth-btn">Enviar Avaliação</button>
+            </form>
         </div>
+
     </main>
 
+    <script>
+        document.getElementById('btn-comecar').addEventListener('click', function() {
+            document.getElementById('intro-box').style.display = 'none';
+            document.getElementById('formulario-box').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>

@@ -47,52 +47,48 @@
     <main class="content-area">
         <h1 class="page-title">PÁGINA INICIAL</h1>
 
-        <div class="cards-grid">
+        <div class="cards-wrapper">
             
-            <a href="/terapias" class="card-link-wrapper">
-                <div class="card">
-                    <div class="card-image"><span>imagem</span></div>
-                    <div class="card-info">
-                        <h3>Terapias</h3>
-                        <p>texto sobre terapias</p>
-                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
-                    </div>
+            <div class="card-servico">
+                <div class="card-img-container">
+                    <div class="card-blob-bg"></div> <img th:src="@{/images/icone-terapia.png}" alt="Imagem Terapias" class="card-img">
                 </div>
-            </a>
+                <h3 class="card-titulo">Terapias</h3>
+                <p class="card-texto">Conheça nossas abordagens terapêuticas para o seu bem-estar físico e mental.</p>
+                <a href="/terapias" class="card-btn">Saiba mais</a>
+            </div>
 
-            <a href="/consulta-avaliativa" class="card-link-wrapper">
-                <div class="card">
-                    <div class="card-image"><span>imagem</span></div>
-                    <div class="card-info">
-                        <h3>Consulta Avaliativa</h3>
-                        <p>texto auxiliar</p>
-                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
-                    </div>
+            <div class="card-servico">
+                <div class="card-img-container">
+                    <div class="card-blob-bg"></div>
+                    <img th:src="@{/images/icone-consulta.png}" alt="Imagem Consulta" class="card-img">
                 </div>
-            </a>
+                <h3 class="card-titulo">Consulta Avaliativa</h3>
+                <p class="card-texto">Descubra seu perfil biopsicossocial e inicie sua jornada de cura.</p>
+                <a href="/consulta-avaliativa" class="card-btn">Saiba mais</a>
+            </div>
 
-            <a href="#" class="card-link-wrapper">
-                <div class="card">
-                    <div class="card-image"><span>imagem</span></div>
-                    <div class="card-info">
-                        <h3>Essências</h3>
-                        <p>texto auxiliar</p>
-                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
-                    </div>
+            <div class="card-servico">
+                <div class="card-img-container">
+                    <div class="card-blob-bg"></div>
+                    <img th:src="@{/images/icone-essencias.png}" alt="Imagem Essências" class="card-img">
                 </div>
-            </a>
+                <h3 class="card-titulo">Essências</h3>
+                <p class="card-texto">Fórmulas naturais criadas especificamente para o seu equilíbrio emocional.</p>
+                <a href="#" class="card-btn">Saiba mais</a>
+            </div>
 
-            <a href="#" class="card-link-wrapper">
-                <div class="card">
-                    <div class="card-image"><span>imagem</span></div>
-                    <div class="card-info">
-                        <h3>Contato</h3>
-                        <p>texto auxiliar</p>
-                        <span class="link-saiba-mais">clique e saiba mais &rarr;</span>
-                    </div>
+            <div class="card-servico">
+                <div class="card-img-container">
+                    <div class="card-blob-bg"></div>
+                    <img th:src="@{/images/icone-contato.png}" alt="Imagem Contato" class="card-img">
                 </div>
-            </a>
+                <h3 class="card-titulo">Contato</h3>
+                <p class="card-texto">Fale conosco para tirar dúvidas ou agendar o seu atendimento.</p>
+                <a href="#" class="card-btn">Saiba mais</a>
+            </div>
 
-        </div> </main>
+        </div> 
+    </main>
 </body>
 </html>
